@@ -19,8 +19,6 @@ The data we are going to use contain information on 9 million BTC/EUR transactio
    |1389173668 |623.53836    |0.12370|
 
 
-
-
 ## What's the plan?
 We will try to replicate the approach followed in [^fn1]:
 1. The csv file is devided into periods of 15 minutes
@@ -30,6 +28,23 @@ We will try to replicate the approach followed in [^fn1]:
 5. A single model is trained on the last 10 months of prior data, and applied during one day, after what it is regenerated. If for a stock it's quite natural to retrain a model after each trading day, it seems to be different in the case of Bitcoin for which markets don't close. Nontheless, dealing with non-stationnary data gives us a rationale to learn the rules of the game again and again.
 
 ![Pipeline](crypto.png)
+
+## Data exploration
+
+Let's try to load the csv file and regroup data in periods of 15 minutes.
+```python
+import pandas as pd
+
+df_btc = pd.read_csv('krakenEUR.csv', names=['timestamp', 'price', 'amount'])
+time_start = df_btc['timestamp'].iloc[0]
+
+def get_period(t, ts=time_start):
+	""" Returns the quarter number of the timestamp t, starting from ts """
+    return int((t - ts) / (15 * 60))
+
+df_btc['period'] = df_btc['timestamp'].apply(get_period)
+
+```
 
 
 [^fn1]: David M. Q. Nelson, Adriano C. M. Pereira, and Renato A. de Oliveira. Stock market’s price movement prediction with LSTM neural networks. IEEE, 2017.
