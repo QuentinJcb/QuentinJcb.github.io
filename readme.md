@@ -1,7 +1,7 @@
 # Bitcoin’s Price Movement Prediction With LSTM Neural Networks
 
 ## Introduction
-This article is the first part of a long project overlapping finance and machine learning. Several papers explore the possibility to forecast the evolution of stock's market price movement using different machine learning algorithms, from SVM to neural networks [^fn1] [^fn2] [^fn3]. All these papers have in common the use of technical indicators to capture signal in the noise. Actually, such a quest goes against Eugene Fama's Efficient Markets Hypothesis [^fn4]. If there were any algorithm able to predict the evolution of stock's market price better than random, the price would immediately integrate this information. In fact, such a possibility only goes against the strong Efficient Market Hypothesis. There are empirical evidence of pockets of innefficiency in the market, should it be because of irrational behaviours from some investors, that a machine learning algorithm could exploit. Assuming the predictive power of technical analysis is yet another hypothesis. A lot of papers have been published on that topic, with contradictory results. Actually, the purpose of this project is more about Python programming, data handling than making money! 
+This article is the first part of a long project overlapping **finance** and **machine learning**. Several papers explore the possibility to forecast the evolution of stock's market price movement using different machine learning algorithms, from SVM to neural networks [^fn1] [^fn2] [^fn3]. All these papers have in common the use of technical indicators to capture signal in the noise. Actually, such a quest goes against Eugene Fama's **Efficient Markets Hypothesis** [^fn4]. If there were any algorithm able to predict the evolution of stock's market price better than random, the price would immediately integrate this information. In fact, such a possibility only goes against the strong Efficient Market Hypothesis. There are empirical evidence of pockets of innefficiency in the market, should it be because of irrational behaviours from some investors, that a machine learning algorithm could exploit. Assuming the predictive power of technical analysis is yet another hypothesis. A lot of papers have been published on that topic, with contradictory results. Actually, the purpose of this project is more about Python programming, data handling than making money!
 
 The data we are going to use contain information on 9 million BTC/EUR transactions made on Kraken. They were collected [here](http://api.bitcoincharts.com/v1/csv/). The csv file contains 3 columns: the POSIX timestamp, the price (in EUR) and the volume (in BTC). The first 10 lines of the csv file look like that: 
   
@@ -23,7 +23,7 @@ The data we are going to use contain information on 9 million BTC/EUR transactio
 
 ## What's the plan?
 We will try to replicate the approach followed in [^fn1]:
-1. The csv file is devided in periods of 15 minutes
+1. The csv file is devided into periods of 15 minutes
 2. On each period, candles are calculated (open, close, high, low)
 3. Based on the candles, about 175 technical indicators are generated using the library [ta-lib](http://www.ta-lib.org/)
 4. The objective is to predict the evolution of Bitcoin's price on the next period of 15 minutes (up or down, it's a classification problem)
