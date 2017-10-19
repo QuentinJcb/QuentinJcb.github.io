@@ -37,7 +37,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 df_btc = pd.read_csv('krakenEUR.csv', names=['timestamp', 'price', 'volume'])
-plt.plot(df_btc['timestamp'], df['price'])
+plt.plot(df_btc['timestamp'], df_btc['price'])
 
 ```
 ![Price](plot.png)
