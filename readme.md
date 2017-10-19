@@ -36,7 +36,7 @@ Let's try to load the csv file and plot the price as a function of the time stam
 import pandas as pd
 import matplotlib.pyplot as plt
 
-df_btc = pd.read_csv('krakenEUR.csv', names=['timestamp', 'price', 'amount'])
+df_btc = pd.read_csv('krakenEUR.csv', names=['timestamp', 'price', 'volume'])
 plt.plot(df_btc['timestamp'], df['price'])
 
 ```
@@ -55,7 +55,19 @@ def get_period(t, ts=time_start):
 df_btc['period'] = df_btc['timestamp'].apply(get_period)
 
 ```
+We have added a new column to the dataframe, representing the quarter number of the transaction. Now, we are going to create a new dataframe containing, for each period of 15 minutes, the open, close, high and low prices as well as the volume of transactions. It's completely straightforward using `pd.groupby()`.
+```python
+df_candles = pd.DataFrame(columns=['period', 'open', 'close', 'high', 'low', 'volume'])
 
+df_candles['period'] = df_btc['period'].drop_duplicates().values
+df_candles['open'] = df_btc.groupby(by='period')['price'].first().values
+df_candles['close'] = df_btc.groupby(by='period')['price'].last().values
+df_candles['high'] = df_btc.groupby(by='period')['price'].max().values
+df_candles['low'] = df_btc.groupby(by='period')['price'].min().values
+df_candles['volume'] = df_btc.groupby(by='period')['volume'].sum().values
+
+```
+ 
 
 [^fn1]: David M. Q. Nelson, Adriano C. M. Pereira, and Renato A. de Oliveira. Stock market’s price movement prediction with LSTM neural networks. IEEE, 2017.
 [^fn2]: Kyoung jae Kim. Financial time series forecasting using support vector machines. Neu- rocomputing, 55, 2003.
