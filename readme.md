@@ -25,11 +25,11 @@ The data we are going to use contain information on 9 million BTC/EUR transactio
 We will try to replicate the approach followed in [^fn1]:
 1. The csv file is devided into periods of 15 minutes
 2. On each period, candles are calculated (open, close, high, low)
-3. Based on the candles, about 175 technical indicators are generated using the library [ta-lib](http://www.ta-lib.org/)
+3. Based on the candles and volumes, about 175 technical indicators are generated using the library [ta-lib](http://www.ta-lib.org/)
 4. The objective is to predict the evolution of Bitcoin's price on the next period of 15 minutes (up or down, it's a classification problem)
-5. A single model is trained on the last 10 month of prior data, and applied during one day, after what it is regenerated. If for a stock it's quite natural to retrain a model after each trading day, it seems to be different in the case of Bitcoin for which markets don't close. Nontheless, dealing with non-stationnary data gives us a rationale to learn the rules of the game again and again.
+5. A single model is trained on the last 10 months of prior data, and applied during one day, after what it is regenerated. If for a stock it's quite natural to retrain a model after each trading day, it seems to be different in the case of Bitcoin for which markets don't close. Nontheless, dealing with non-stationnary data gives us a rationale to learn the rules of the game again and again.
 
-![GitHub Logo](crypto.png)
+![Pipeline](crypto.png)
 
 
 [^fn1]: David M. Q. Nelson, Adriano C. M. Pereira, and Renato A. de Oliveira. Stock market’s price movement prediction with LSTM neural networks. IEEE, 2017.
