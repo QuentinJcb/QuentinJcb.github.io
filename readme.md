@@ -5,7 +5,7 @@ This article is the first part of a long project overlapping **finance** and **m
 
 The data we are going to use contain information on 9 million BTC/EUR transactions made on Kraken. They were collected [here](http://api.bitcoincharts.com/v1/csv/). The csv file contains 3 columns: the POSIX timestamp, the price (in EUR) and the volume (in BTC). The first 10 lines of the csv file look like that: 
   
-   | timestamp |     price   | amount|
+   | timestamp |     price   | volume|
    |-----------|:-----------:|-------|
    |1389173189 |624.01000    |0.20000|
    |1389173198 |624.01000    |0.09767|
