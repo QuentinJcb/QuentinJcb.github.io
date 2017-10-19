@@ -74,14 +74,6 @@ delta_t = df_btc['timestamp'] - df['timestamp'].shift()
 delta_t.dropna(inplace=True)
 
 ```
-   | count |8.88e+06   | 
-   |mean   |12.5       |
-   |std    |1351       |
-   |min    |0          |
-   |25%    |0          |
-   |50%    |1          |
-   |75%    |7          |
-   |max    |4.02e+06   |
 
 
 [^fn1]: David M. Q. Nelson, Adriano C. M. Pereira, and Renato A. de Oliveira. Stock market’s price movement prediction with LSTM neural networks. IEEE, 2017.
