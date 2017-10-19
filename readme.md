@@ -31,11 +31,21 @@ We will try to replicate the approach followed in [^fn1]:
 
 ## Data exploration
 
-Let's try to load the csv file and regroup data in periods of 15 minutes.
+Let's try to load the csv file and plot the price as a function of the time stamp:
 ```python
 import pandas as pd
+import matplotlib.pyplot as plt
 
 df_btc = pd.read_csv('krakenEUR.csv', names=['timestamp', 'price', 'amount'])
+plt.plot(df_btc['timestamp'], df['price'])
+
+```
+![Price](plot.png)
+
+Actually, the data cover the period between August 2014 and July 2017.
+
+Now, let's regroup the data in periods of 15 minutes:
+```python
 time_start = df_btc['timestamp'].iloc[0]
 
 def get_period(t, ts=time_start):
