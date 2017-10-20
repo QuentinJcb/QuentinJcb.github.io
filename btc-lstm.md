@@ -67,8 +67,8 @@ df_candles['low'] = df_btc.groupby(by='period')['price'].min().values
 df_candles['volume'] = df_btc.groupby(by='period')['volume'].sum().values
 
 ```
- ### Wait! Can we look closer a the data?
- Until now we haven't said anything about the time between two succesive transactions in the csv file. With line of code, we can compute all the $$\delta t$$ between two transactions: 
+ **Wait! Can we look closer a the data?**
+ Until now we haven't said anything about the time between two succesive transactions in the csv file. With one single line of code, we can compute all the time steps between two transactions: 
  ```python
 delta_t = df_btc['timestamp'] - df['timestamp'].shift()
 delta_t.dropna(inplace=True)
