@@ -72,13 +72,46 @@ df_candles['volume'] = df_btc.groupby(by='period')['volume'].sum().values
  ```python
 delta_t = df_btc['timestamp'] - df['timestamp'].shift()
 delta_t.dropna(inplace=True)
-
 ```
 In fact, focusing only on the data from Kraken is very limitating, since data from other brokers are available. One possibility would be to merge all of these data. At least, we could compare the frequencies of the data available and the time span. Nonetheless, it will rapidly require more than 4 GB of ram...Let's try to use Dask then!
 
 ## Muche more data available thanks to Dask!
+Dask is a library that provides multi-core and distributed parallel execution on larger-than-memory datasets. In particular, Dask provides an easy solution to distribute dataframe-like structures on multiple computers. In our case, we will distribute the date on two different configurations: 
+1. A MacBook Air (2013), with an i5 @ 1.3 GHz, 4 GB of RAM, running MacOS X
+2. A computer with an i7 6700k, 8 GB of RAM, runnig Ubuntu
 
-Dask is a library that provides multi-core and distributed parallel execution on larger-than-memory datasets. 
+All we need to do is creating a scheduler, a worker and a client. On the MacBook Air, we initialize a scheduler with the command ```dask-scheduler```. On the second computer, we create a worker by typing ```dask-worker 192.168.0.21:8786```. Actually, ```192.168.0.21``` is the local address of the MacBook Air. Then, on the MacBook Air, in a Python console, we can type the following commands:
+ ```python
+from dask.distributed import Client
+
+# be sure to shut down other kernels running distributed clients
+c = Client('192.168.0.21:8786')
+```
+This client will allow us to communicate between the different workers of the cluster.
+
+To test our configuration, we can type the following commands in the Python console:
+ ```python
+from dask import delayed
+import time
+
+def inc(x):
+    time.sleep(5)
+    return x + 1
+
+def dec(x):
+    time.sleep(3)
+    return x - 1
+
+def add(x, y):
+    time.sleep(7)
+    return x + y
+    
+x = delayed(inc)(1)
+y = delayed(dec)(2)
+total = delayed(add)(x, y)
+total.compute()
+```
+At the same time, Dask provides a UI based on Bokeh, available at this address: ```http://127.0.0.1:8787/```.
 
 ## References
 
