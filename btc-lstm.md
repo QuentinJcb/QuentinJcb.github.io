@@ -78,6 +78,8 @@ In fact, focusing only on the data from Kraken is very limitating, since data fr
 
 ## Muche more data available thanks to Dask!
 
+Dask is a library that provides multi-core and distributed parallel execution on larger-than-memory datasets. 
+
 ## References
 
 [^fn1]: David M. Q. Nelson, Adriano C. M. Pereira, and Renato A. de Oliveira. Stock market’s price movement prediction with LSTM neural networks. IEEE, 2017.
