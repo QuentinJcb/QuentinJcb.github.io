@@ -77,8 +77,8 @@ In fact, focusing only on the data from Kraken is very limitating, since data fr
 
 ## Muche more data available thanks to Dask!
 Dask is a library that provides multi-core and distributed parallel execution on larger-than-memory datasets. In particular, Dask provides an easy solution to distribute dataframe-like structures on multiple computers. In our case, we will distribute the date on two different configurations: 
-1. A MacBook Air (2013), with an i5 @ 1.3 GHz, 4 GB of RAM, running MacOS X
-2. A computer with an i7 6700k, 8 GB of RAM, runnig Ubuntu
+1. A MacBook Air (2013), with an i5 @ 1.3 GHz, 4 GB of RAM, running on MacOS X
+2. A computer with an i7 6700k, 8 GB of RAM, runnig on Ubuntu
 
 All we need to do is creating a scheduler, a worker and a client. On the MacBook Air, we initialize a scheduler with the command ```dask-scheduler```. On the second computer, we create a worker by typing ```dask-worker 192.168.0.21:8786```. Actually, ```192.168.0.21``` is the local address of the MacBook Air. Then, on the MacBook Air, in a Python console, we can type the following commands:
  ```python
