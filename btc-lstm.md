@@ -76,7 +76,7 @@ delta_t.dropna(inplace=True)
 ```
 In fact, focusing only on the data from Kraken is very limitating, since data from other brokers are available. One possibility would be to merge all of these data. At least, we could compare the frequencies of the data available and the time span. Nonetheless, it will rapidly require more than 4 GB of ram...Let's try to set up a spark cluster then!
 
-## Muche more data available thanks to Spark
+## Muche more data available thanks to Spark!
 
 [^fn1]: David M. Q. Nelson, Adriano C. M. Pereira, and Renato A. de Oliveira. Stock market’s price movement prediction with LSTM neural networks. IEEE, 2017.
 [^fn2]: Kyoung jae Kim. Financial time series forecasting using support vector machines. Neu- rocomputing, 55, 2003.
