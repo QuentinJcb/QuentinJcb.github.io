@@ -74,9 +74,9 @@ delta_t = df_btc['timestamp'] - df['timestamp'].shift()
 delta_t.dropna(inplace=True)
 
 ```
-In fact, focusing only on the data from Kraken is very limitating, since data from other brokers are available. One possibility would be to merge all of these data. At least, we could compare the frequencies of the data available and the time span. Nonetheless, it will rapidly require more than 4 GB of ram...Let's try to set up a spark cluster then!
+In fact, focusing only on the data from Kraken is very limitating, since data from other brokers are available. One possibility would be to merge all of these data. At least, we could compare the frequencies of the data available and the time span. Nonetheless, it will rapidly require more than 4 GB of ram...Let's try to use Dask then!
 
-## Muche more data available thanks to Spark!
+## Muche more data available thanks to Dask!
 
 ## References
 
