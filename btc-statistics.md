@@ -36,7 +36,7 @@ ts = data['price']
 ts.index = data['timestamp']
 ts = ts.resample('5Min').ohlc()
 ```
-We obtain the following time series: 
+We obtain the following time series (for the first 5 rows): 
 
 |timestamp           | open      |    high   |     low   |   close  |  
 |--------------------|:---------:|-----------|-----------|----------|
