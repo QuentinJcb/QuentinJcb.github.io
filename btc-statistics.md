@@ -18,9 +18,7 @@ The purpose of this article is to analyse Bitcoin tick-by-tick data [available h
 
 ## What's the plan?
 We will try to explore this dataset and analyse the statistical properties of BTC prices. In particular, we will try to model the properties of this time series at different time scales. Nonetheless, we will limit our approach to short time scales given that Bitcoin is a very young asset. Following what can be found in [^fn1] concerning S&P500, GBP/USD and German bunds, we will discuss second order statistics, the distribution of returns over different time scales.
-   
-![Price](btc.png)
-   
+      
 ## Data cleaning
 Before investigating the statistical properties of this dataset, it seems necessary to perform some basic data cleaning tasks. First, Pandas library includes some tools to deal with dates and create statistics based on a given window size.
 Let's first read the csv file and convert the timestamps into dates:
@@ -47,7 +45,7 @@ We obtain the following time series (for the first 5 rows):
 |2014-01-08 09:45:00 | 630.00000 | 630.00000 | 629.70000 | 629.70000|
    
    
-   
+![Price](btc.png)
    
 ## References
 
