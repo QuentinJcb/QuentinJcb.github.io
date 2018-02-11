@@ -15,14 +15,36 @@ The purpose of this article is to analyse Bitcoin tick-by-tick data [available h
    |1389173545 |623.53846    |0.20000|
    |1389173545 |623.53836    |1.80000|
    |1389173668 |623.53836    |0.12370|
-   
-   ## What's the plan?
-   We will try to explore this dataset and analyse the statistical properties of BTC prices. In particular, we will try to model the properties of this time series at different time scales. Nonetheless, we will limit our approach to short time scales given that Bitcoin is a very young asset. Following what can be found in [^fn1] concerning S&P500, GBP/USD and German bunds, we will discuss second order statistics, the distribution of returns over different time scales.
-   
-   ![Price](btc.png)
 
+## What's the plan?
+We will try to explore this dataset and analyse the statistical properties of BTC prices. In particular, we will try to model the properties of this time series at different time scales. Nonetheless, we will limit our approach to short time scales given that Bitcoin is a very young asset. Following what can be found in [^fn1] concerning S&P500, GBP/USD and German bunds, we will discuss second order statistics, the distribution of returns over different time scales.
    
+![Price](btc.png)
    
+## Data cleaning
+Before investigating the statistical properties of this dataset, it seems necessary to perform some basic data cleaning tasks. First, Pandas library includes some tools to deal with dates and create statistics based on a given window size.
+Let's first read the csv file and convert the timestamps into dates:
+```python
+import pandas as pd
+
+data = pd.read_csv('krakenEUR.csv', header=None, names=['timestamp', 'price', 'volume'])
+data['timestamp'] = pd.to_datetime(data['timestamp'], unit='s')
+```
+Finally, pandas includes a tool to compute open/high/low/close features on specific windows. We will work on windows of 5 minutes.
+```python
+ts = data['price']
+ts.index = data['timestamp']
+ts = ts.resample('5Min').ohlc()
+```
+We obtain the following time series: 
+
+|timestamp           | open      |    high   |     low   |   close  |  
+|--------------------|:---------:|-----------|-----------|----------|
+|2014-01-08 09:25:00 | 624.01000 | 624.01000 | 623.53836 | 623.54066|
+|2014-01-08 09:30:00 | 623.54066 | 623.54326 | 623.53836 | 623.53836|
+|2014-01-08 09:35:00 | 623.53836 | 623.53836 | 623.53836 | 623.53836|
+|2014-01-08 09:40:00 | 623.54236 | 630.00000 | 623.53836 | 630.00000|
+|2014-01-08 09:45:00 | 630.00000 | 630.00000 | 629.70000 | 629.70000|
    
    
    
