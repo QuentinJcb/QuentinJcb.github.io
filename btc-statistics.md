@@ -1,4 +1,4 @@
-# Bitcoin’s tick by tick data analysis
+# Bitcoin’s tick-by-tick data analysis
 
 ## Introduction
 The purpose of this article is to analyse Bitcoin tick-by-tick data [available here](http://api.bitcoincharts.com/v1/csv/). We will focus exclusively on BTC/EUR data from Kraken exchange. This choice is a bit arbitrary but Kraken seems to be one of the most active exchanges for EUR. The file contains 16.7 million BTC/EUR transactions, with the corresponding timestamp and volume. There are indeed three columns: the POSIX timestamp, the price (in EUR) and the volume (in BTC). The first 10 lines of the csv file look like that: 
