@@ -1,3 +1,5 @@
+mathjax: true
+
 # Bitcoin’s tick-by-tick data analysis
 
 ## Introduction
