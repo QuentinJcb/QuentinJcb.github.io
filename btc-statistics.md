@@ -82,7 +82,7 @@ ts = ts.loc[start:]
 
 ## Heteroskedasticity
 
-It is often assumed in time series analysis that a specific distribution does not change with time. Nonetheless, it is a well-known fact in finance that the variance of the returns is time dependent: some calm periods succeed to more turbulent ones. This fact called **heteroskedasticity** is clearly observable when plotting the 5 minutes returns of BTC against random shocks of the same order of magnitude, as a Brownian motion would have generated. Note that this is not BTC specific: other financial assets exhibit periods of calm succeeding more turbulent ones (for example 1929, 1986, 2008 for equity).
+It is often assumed in time series analysis that a specific distribution does not change with time. Nonetheless, it is a well-known fact in finance that the variance of the returns is time dependent: some calm periods succeed to more turbulent ones. This fact called **heteroskedasticity** is clearly observable when plotting the 5 minutes returns of BTC against random shocks of the same order of magnitude, as a Brownian motion would have generated. Note that this is not BTC specific: other financial assets exhibit periods of calm succeeding more turbulent ones (for example 1929, 1987, 2008 for equity).
 
 ![BTC returns](returns.png "BTC returns")
 
