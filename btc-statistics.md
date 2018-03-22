@@ -92,7 +92,10 @@ Some periods of high volatility (SEC rejection of Winklevoss brothers' ETF proje
 {% raw %}
   $$\frac{\mathrm{d}S_t}{S_t} = \mu  \mathrm{d}t + \sigma \mathrm{d}B_t $$ 
  {% endraw %}
-This model states that the returns are compose of a deterministic component (the drift) plus some gaussian noise, represented by the increments of the Brownian motion. In this model, $$\sigma$$ is assumed to be constant.
+This model states that the returns are composed of a deterministic component (the drift $$\mu$$) plus some gaussian noise, represented by the increments of the Brownian motion. In this model, $$\sigma$$ is assumed to be constant. For a small time step $$\delta t $$, 
+{% raw %}
+  $$\frac{\Delta S}{S} = \mu  \delta t + \sigma \sqrt{t} Z $$ 
+ {% endraw %}
 
 The chart above was created with the following lines of code: 
 ```python
