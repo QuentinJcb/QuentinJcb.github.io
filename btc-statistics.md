@@ -65,7 +65,13 @@ Since the first rows of the dataset do not contain many transactions, we give th
 |2018-03-21 11:45:00 | 9117.00 | 9117.00 | 9092.27 | 9092.28 |-0.002715|
 |2018-03-21 11:50:00 | 9092.27 | 9092.28 | 9072.18 | 9072.20 |-0.002210|
 
-### What happened April, 16 2016 ?
+### What happened April, 15 2016 ?
+
+Looking at the returns, one can clearly spot some anomalies. In particular, April 15 2016 at 11 pm, BTC moved from USD 0.06 to USD 1181.95 as Coinbase reopened after scheduled maintenance. This corresponds to a return of 989% and clearly indicates that some returns in this dataset are not representative of the evolution of BTC but have more to do with computer failures. For statistical analysis of BTC/USD returns distribution, these rows should be removed from the dataset. That's what we do next line: 
+
+```python
+ts.drop(pd.to_datetime('2017-04-15 23:00:00'), inplace=True)
+```
 
 
 
