@@ -109,7 +109,9 @@ plt.legend(loc=4, prop={'size': 18})
 
 plt.show()
 ```
-
+{% raw %}
+  $$a^2 + b^2 = c^2$$ --> note that all equations between these tags will not need escaping! 
+ {% endraw %}
 
 ## References
 
