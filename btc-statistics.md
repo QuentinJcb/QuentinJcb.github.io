@@ -73,6 +73,18 @@ Looking at the returns, one can clearly spot some anomalies. In particular, Apri
 ts.drop(pd.to_datetime('2017-04-15 23:00:00'), inplace=True)
 ```
 
+More generally, whe should only focus on the last years since at inception BTC was far from being liquid. Completely arbotrarily, we consider only the data **since January 1, 2016**. This new dataset contains about 34 million transactions.
+
+```python
+start = pd.to_datetime('2016-01-01 00:00:00')
+ts = ts.loc[start:]
+```
+
+## Heteroskedasticity
+
+It is often assumed in time series analysis that a specific distribution does not change with time. Nonetheless, it is a well-known fact in finance that the variance of the returns is time dependent: some calm periods succeed to more turbulent ones. This fact called **heteroskedasticity** is clearly observable when plotting the 5 minutes returns of BTC against random shocks of the same order of magnitude, as a Brownian motion would have generated.
+
+![Alt text](returns.png "BTC returns")
 
 
 ## References
