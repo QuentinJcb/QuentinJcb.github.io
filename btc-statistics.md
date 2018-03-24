@@ -122,7 +122,8 @@ plt.legend(loc=4, prop={'size': 18})
 
 plt.show()
 ```
-
+## Autocorrelations
+We now investigate the serial dependence between the returns.
 
 ## References
 
