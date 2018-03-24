@@ -123,7 +123,7 @@ plt.legend(loc=4, prop={'size': 18})
 plt.show()
 ```
 ## Autocorrelations
-We now investigate the serial dependence between the returns.
+We now investigate the serial dependence between the returns. We compute the partial autocorrelation function on the returns with lags ranging from 5 minutes to 30 hours. The graph below show the partial ACF and the $$-3/\sqrt{N}, + 3/\sqrt{N}$$ confidence interval. We observe some significant negative autocorrelations in the first hour. Nontheless, given the high amount of transaction fees on BTC exchanges, there is no garantee on the profitability of this correlations. Some significant positive correlations exist between 3 an 15 hours, perhaps because of trend-following strategies.
 
 ![Autocorrelations](autocorr.png "BTC autocorrelations")
 
