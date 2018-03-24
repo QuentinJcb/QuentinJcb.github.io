@@ -97,7 +97,7 @@ This model states that the returns are composed of a deterministic component (th
   $$\frac{\delta S}{S} = \mu \delta t + \sigma \sqrt{t} Z $$ 
 {% endraw %}
 where $$Z \sim \mathcal{N}(0,1) $$
-This model at the heart of Black and Scholes assumtions leads to normally distributed returns and log-normal prices. The returns over 5 minutes are normally distributed with mean $$\mu \delta t $$ and variance $$\sigma^2 \delta t$$ which is not consistent with empirical data.
+This model at the heart of Black and Scholes assumtions leads to normally distributed returns and log-normal prices. The returns over 5 minutes are normally distributed with mean $$\mu \delta t $$ and variance $$\sigma^2 \delta t$$ which is not consistent with empirical data: December 2017, some 35$$\sigma$$ events were observed.
 
 The chart above was created with the following lines of code: 
 ```python
