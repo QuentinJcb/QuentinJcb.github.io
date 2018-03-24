@@ -125,6 +125,9 @@ plt.show()
 ## Autocorrelations
 We now investigate the serial dependence between the returns.
 
+![Autocorrelations](autocorr.png "BTC autocorrelations")
+
+
 ## References
 
 [^fn1]: Jean-Philippe Bouchaud, Marc Potters. Theory of Financial Risk and Derivative Pricing: From Statistical Physics to Risk Management. 2004.
