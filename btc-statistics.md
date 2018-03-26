@@ -123,10 +123,40 @@ plt.legend(loc=4, prop={'size': 18})
 plt.show()
 ```
 ## Autocorrelations
-We now investigate the serial dependence between the returns. We compute the partial autocorrelation function on the returns with lags ranging from 5 minutes to 30 hours. The graph below show the partial ACF and the $$-3/\sqrt{N}, + 3/\sqrt{N}$$ confidence interval. We observe some significant negative autocorrelations in the first hour. Nontheless, given the high amount of transaction fees on BTC exchanges, there is no garantee on the profitability of this correlations. Some significant positive correlations exist between 3 and 15 hours, perhaps because of trend-following strategies.
+We now investigate the serial dependence between the returns. We compute the partial autocorrelation function on the returns with lags ranging from 5 minutes to 30 hours. The graph below shows the partial ACF and the $$-3/\sqrt{N}, + 3/\sqrt{N}$$ confidence interval. We observe some significant negative autocorrelations in the first hour. Nontheless, given the high amount of transaction fees on BTC exchanges, there is no garantee on the profitability of this correlations. Some significant positive correlations exist between 3 and 15 hours, perhaps because of trend-following strategies.
 
 ![Autocorrelations](autocorr.png "BTC autocorrelations")
 
+This graph was produced by the following piec of code:
+
+```python
+# First, we center and scale the data to treat nan as zeros
+ret = ts['return']
+ret = (ret - ret.mean())/ret.std()
+
+# We compute the confidence interval
+n = len(ret) - np.isnan(ret).sum()
+conf_int = [-3/np.sqrt(n),  3/np.sqrt(n)]
+
+# We compute the ACF
+auto_c = []
+vec_lag = list(range(1, 600))
+for lag in vec_lag:
+    ac = ret.fillna(0).autocorr(lag=lag)
+    auto_c.append(ac)
+
+plt.rc('font', size=14)
+plt.rc('xtick', labelsize=12)
+plt.figure(figsize=(10, 6))
+plt.scatter(vec_lag, auto_c, marker='o', linestyle='--', color='r')
+plt.xlim(vec_lag[0]- 1, vec_lag[-1] + 1)
+plt.ylabel(r'$\gamma(l)$')
+plt.axhline(y=conf_int[0], linestyle='--', linewidth=3.0 )
+plt.axhline(y=conf_int[1], linestyle='--', linewidth=3.0)
+plt.xticks([v for v in vec_lag if (v % 20 == 0) ],
+            [ int(v/20) for v in vec_lag if (v % 20 == 0)])
+plt.show()
+```
 
 ## References
 
