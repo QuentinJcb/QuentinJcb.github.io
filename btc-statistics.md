@@ -135,7 +135,7 @@ ret = ts['return']
 ret = (ret - ret.mean())/ret.std()
 
 # We compute the confidence interval
-n = len(ret) - np.isnan(ret).sum()
+n = len(ret)
 conf_int = [-3/np.sqrt(n),  3/np.sqrt(n)]
 
 # We compute the ACF
