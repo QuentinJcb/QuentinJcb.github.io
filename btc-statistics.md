@@ -127,7 +127,7 @@ We now investigate the serial dependence between the returns. We compute the par
 
 ![Autocorrelations](autocorr.png "BTC autocorrelations")
 
-This graph was produced by the following piec of code:
+This graph was produced by the following piece of code:
 
 ```python
 # First, we center and scale the data to treat nan as zeros
