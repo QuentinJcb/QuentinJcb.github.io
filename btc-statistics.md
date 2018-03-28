@@ -219,8 +219,7 @@ This gives the following graph:
 
 ![Tails](cdf.png "BTC returns tail")
 
-
-
+As we can see, the Student distribution gives a better fit than the Gaussian one, especially far in the tails.
 
 
 
