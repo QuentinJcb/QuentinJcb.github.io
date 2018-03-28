@@ -72,6 +72,6 @@ $$\mathrm{Var}\left(\sum \limits_{t} q_t \mid r_{asset} \mid \right) = T\left((1
 {% endraw %}
 so that 
 {% raw %} 
-$$\mathrm{Var}\left(\sum \limits_{t} q_t \mid r_{asset} \mid \right)T\left( \delta t^2(\mu - \sigma^2/2)^2 + \sigma^2\delta t- 4\eps^2\mathbb{E}(\mid r_{asset}\mid)^2 \right)$$
+$$\mathrm{Var}\left(\sum \limits_{t} q_t \mid r_{asset} \mid \right)T\left( \delta t^2(\mu - \sigma^2/2)^2 + \sigma^2\delta t- 4\epsilon^2\mathbb{E}(\mid r_{asset}\mid)^2 \right)$$
 {% endraw %}
 
