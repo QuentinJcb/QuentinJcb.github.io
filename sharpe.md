@@ -76,8 +76,19 @@ $$\mathrm{Var}\left(\sum \limits_{t} q_t \mid r_{asset} \mid \right) = T\left( \
 {% endraw %}
 We can therefore approximate the standard deviation of the portfolio returns by this expression:
 {% raw %} 
-$$\sigma_{portfolio} \approx T^{1/2}\sqrt{\delta t^2(\mu - \sigma^2/2)^2 + \sigma^2\delta t} $$
+$$\sigma_{portfolio} \approx T^{1/2}\sqrt{\delta t^2(\mu - \sigma^2/2)^2 + \sigma^2\delta t} \approx T^{1/2}\sigma\sqrt{\delta t}$$
 {% endraw %}
 
+$$\mathbb{E}(\mid r_{asset}\mid)$$ can be approximated by its first term:
+{% raw %} 
+$$\mathbb{E}(\mid r_{asset}\mid) \approx \sigma\sqrt{\delta t}\sqrt{\frac{2}{\pi}} $$
+{% endraw %}
+
+Finally, the Sharpe ratio of this strategy is 
+{% raw %} 
+$$ SR_{portfolio} \approx 1.6\epsilon T^{1/2}$$
+{% endraw %}
+
+For daily predictions, over one year, we find $$SR_{portfolio} \approx 25\epsilon $$: an increase of 1% in our accuracy will lead to a SR increase of 25 pp!
 
 
