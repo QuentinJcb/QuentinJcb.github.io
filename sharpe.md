@@ -68,10 +68,16 @@ $$\mathbb{E}\left(\sum \limits_{t} q_t \mid r_{asset} \mid \right) =2T\epsilon\m
 {% endraw %}
 and 
 {% raw %} 
-$$\mathrm{Var}\left(\sum \limits_{t} q_t \mid r_{asset} \mid \right) = T\left((1 ) 4\epsilon^2)\mathbb{E}(\mid r_{asset}\mid)^2 + 4\epsilon^2 \mathrm{Var}(\mid r_{asset}\mid) + (1-4\epsilon^2)\mathrm{Var}(\mid r_{asset}\mid) \right)$$
+$$\mathrm{Var}\left(\sum \limits_{t} q_t \mid r_{asset} \mid \right) = T\left((1 - 4\epsilon^2)\mathbb{E}(\mid r_{asset}\mid)^2 + 4\epsilon^2 \mathrm{Var}(\mid r_{asset}\mid) + (1-4\epsilon^2)\mathrm{Var}(\mid r_{asset}\mid) \right)$$
 {% endraw %}
 so that 
 {% raw %} 
-$$\mathrm{Var}\left(\sum \limits_{t} q_t \mid r_{asset} \mid \right)T\left( \delta t^2(\mu - \sigma^2/2)^2 + \sigma^2\delta t- 4\epsilon^2\mathbb{E}(\mid r_{asset}\mid)^2 \right)$$
+$$\mathrm{Var}\left(\sum \limits_{t} q_t \mid r_{asset} \mid \right) = T\left( \delta t^2(\mu - \sigma^2/2)^2 + \sigma^2\delta t- 4\epsilon^2\mathbb{E}(\mid r_{asset}\mid)^2 \right)$$
 {% endraw %}
+We can therefore approximate the standard deviation of the portfolio returns by this expression:
+{% raw %} 
+$$\sigma_{portfolio} \approx T^{1/2}\sqrt{\delta t^2(\mu - \sigma^2/2)^2 + \sigma^2\delta t} $$
+{% endraw %}
+
+
 
