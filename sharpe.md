@@ -51,6 +51,6 @@ $$\mathrm{Var}\left(\sum \limits_{t} q_t \mid r_{asset} \mid \right) = T\left(4p
 ## What is the distribution of $$\mid r_{asset}\mid $$ ?
 We have seen before that $$r_t$$ is normally distributed. $$\mid r_{asset}\mid $$ will therefore have a folded normal distribution. The key point is that we can easily compute the mean and variance of this distribution, knowing those of $$r_t$$. The results are the following:
 {% raw %} 
-$$\mathbb{E}(\mid r_{asset}\mid) = \sigma \sqrt{\delta t} \sqrt{\frac{2}{\pi}}\exp(- \frac{(\mu  - \sigma^2/2)^2}{2\sigma^2 \delta t}) + (\mu  - \sigma^2/2)(1 - 2\Phi(- \frac{\mu  - \sigma^2/2}{\sigma \sqrt{\delta t}}))$$
+$$\mathbb{E}(\mid r_{asset}\mid) = \sigma \sqrt{\delta t} \sqrt{\frac{2}{\pi}}\exp\left(- \frac{(\mu  - \sigma^2/2)^2}{2\sigma^2 \delta t}\right) + (\mu  - \sigma^2/2)\left(1 - 2\Phi\left(- \frac{\mu  - \sigma^2/2}{\sigma \sqrt{\delta t}}\right)\right)$$
 {% endraw %}
 
