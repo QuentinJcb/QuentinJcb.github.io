@@ -43,9 +43,9 @@ For the variance, we have:
 {% raw %} 
 $$\mathrm{Var}\left(\sum \limits_{t} q_t \mid r_{asset} \mid \right) = \sum \limits_{t} \mathrm{Var}\left(q_t \mid r_{asset}\mid \right)$$
 {% endraw %}
-Using the property $$\mathrm{Var}(XY) = \mathrm{Var}(X)\mathbb{E}(Y) + \mathrm{Var}(Y)\mathbb{E}(X) + \mathrm{Var}(X)\mathrm{Var}(Y)$$, it follows that:
+Using the property $$\mathrm{Var}(XY) = \mathrm{Var}(X)\mathbb{E}(Y)^2 + \mathrm{Var}(Y)\mathbb{E}(X)^2 + \mathrm{Var}(X)\mathrm{Var}(Y)$$, it follows that:
 {% raw %} 
-$$\mathrm{Var}\left(\sum \limits_{t} q_t \mid r_{asset} \mid \right) = T\left(4p(1-p)\mathbb{E}(\mid r_{asset}\mid) + (2p-1) \mathrm{Var}(\mid r_{asset}\mid) + 4p(1-p)\mathrm{Var}(\mid r_{asset}\mid)  \right)$$
+$$\mathrm{Var}\left(\sum \limits_{t} q_t \mid r_{asset} \mid \right) = T\left(4p(1-p)\mathbb{E}(\mid r_{asset}\mid)^2 + (2p-1)^2 \mathrm{Var}(\mid r_{asset}\mid) + 4p(1-p)\mathrm{Var}(\mid r_{asset}\mid)  \right)$$
 {% endraw %}
 
 ## What is the distribution of $$\mid r_{asset}\mid $$ ?
@@ -58,4 +58,7 @@ The variance of $$\mid r_{asset}\mid $$ is given by:
 {% raw %} 
 $$\mathrm{Var}(\mid r_{asset}\mid) = \delta t^2(\mu  - \sigma^2/2)^2 + \sigma^2\delta t - \mathbb{E}(\mid r_{asset}\mid )^2$$
 {% endraw %}
+
+The next step is to assess the sensitivity of the mean and the variance of the portfolio with respect to $$p$$. 
+
 
