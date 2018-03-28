@@ -163,6 +163,62 @@ plt.xticks([v for v in vec_lag if (v % 20 == 0) ],
             [ int(v/20) for v in vec_lag if (v % 20 == 0)])
 plt.show()
 ```
+## Cummulative distribution of returns
+In this section, we examine the tail of the distribution of returns and compare it with the Gaussian and Student cases. We will see that the decay of the empirical distribution is much slower than what expected with a Gaussian random variable. We compute the returns on periods of one hour. Indeed, the ACF detailed previously is not incompatible with the scenario where returns are independent, except for a lag shorter than one hour. We neglect the autocorrelations that appeared after this lag which are less significant. Under this scenario, by addition of random variables, the distribution on longer time scales should be the convolution of distributions on shorter time scales.
+
+First, we regroup the data as we did before, but with periods of one hour:
+```python
+ts = prices.resample('1H').ohlc()
+ts['n_transactions'] = prices.resample('5Min').count()
+ts['return'] = np.log(ts['close']) - np.log(ts['open'])
+ts['return'].loc[pd.to_datetime('2017-04-15 23:00:00')] = np.nan
+start = pd.to_datetime('2016-01-01 00:00:00')
+ts = ts.loc[start:]
+```
+Then, we center and normalize the returns. We can therefore handle the missing values as zeros.
+```python
+ret = ts['return']
+ret = (ret - ret.mean())/ret.std()
+ret.fillna(0, inplace=True)
+```
+Finally, we simulate normal random variables:
+```python
+norm = np.random.normal(size=len(ret))
+```
+We the define a function to compute the cummulative distribution given a sample. 
+```python
+def compute_cdf(sample, thresh=1e-2):
+    N = len(sample)
+    x = np.sort(sample)
+    cdf = np.array(range(N))/float(N)
+    cdf = 1 - cdf
+    x = x[x > thresh]
+    cdf = cdf[-len(x):]
+    return x, cdf
+```
+We apply this function to the returns and to the sample ```norm``` created before. We then plot the associated tails of the cdf in a log-log chart.
+```python
+x1, cdf1 = compute_cdf(ret)
+x2, cdf2 = compute_cdf(norm)
+
+plt.rc('font', size=14)
+plt.rc('xtick', labelsize=12)
+plt.figure(figsize=(10, 6))
+plt.xlabel(r'$\eta(\%)$')
+plt.ylabel(r'$\mathcal{P}_>(\eta)$')
+plt.loglog(x1, cdf1, basex=10, label='Data')
+plt.loglog(x2, cdf2, basex=10, label='Gaussian')
+plt.legend(loc=3, prop={'size': 18})
+plt.grid(True)
+```
+This gives the following graph:
+
+![Tails](cdf.png "BTC returns tail")
+
+
+
+
+
 
 ## References
 
