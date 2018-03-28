@@ -14,5 +14,5 @@ $$\frac{\mathrm{d}S_t}{S_t} = \mu \mathrm{d}t + \sigma \mathrm{d}B_t $$
 
 By integratio between $t$ and $t + \delta t$, we can show using Ito's formula the following property:
 {% raw %} 
-$$\frac{\delta S_t}{S_t} \sim \mathcal{N}(\mu  - \sigma^2/2)\deltat; + \sigma^2 \delta t) $$ 
+$$\log(\frac{\S_{t + \delta t}}{S_t}) \sim \mathcal{N}(\mu  - \sigma^2/2)\delta t; + \sigma^2 \delta t) $$ 
 {% endraw %}
