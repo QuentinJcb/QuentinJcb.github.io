@@ -3,7 +3,7 @@
 # Bitcoin’s tick-by-tick data analysis
 
 ## Introduction
-The purpose of this article is to analyse Bitcoin tick-by-tick data [available here](http://api.bitcoincharts.com/v1/csv/). We will focus exclusively on BTC/USD data from Coinbase exchange. This choice is a bit arbitrary but Coinbase seems to be one of the most active exchanges for USD and the CSV file covers a long period of time. As of March 2018, the file contains 39 million BTC/USD transactions, with the corresponding timestamp and volume. There are indeed three columns: the POSIX timestamp, the price (in USD) and the volume (in BTC). The first 10 lines of the csv file look like that: 
+The purpose of this article is to analyse Bitcoin tick-by-tick data [available here](http://api.bitcoincharts.com/v1/csv/). We will focus exclusively on BTC/USD data from Coinbase exchange. This choice is a bit arbitrary but Coinbase seems to be one of the most active exchanges for USD, behind bitmex, and the CSV file covers a long period of time. As of March 2018, the file contains 39 million BTC/USD transactions, with the corresponding timestamp and volume. There are indeed three columns: the POSIX timestamp, the price (in USD) and the volume (in BTC). The first 10 lines of the csv file look like that: 
 
    | timestamp |     price   | volume|
    |-----------|:-----------:|-------|
@@ -30,26 +30,27 @@ import pandas as pd
 data = pd.read_csv('coinbaseUSD.csv', header=None, names=['timestamp', 'price', 'volume'])
 data['timestamp'] = pd.to_datetime(data['timestamp'], unit='s')
 ```
-Finally, pandas includes a tool to compute open/high/low/close features on specific windows. We will work on windows of 5 minutes.
+Finally, pandas includes a tool to compute open/high/low/close features on specific windows. We will work on windows of 5 minutes. We will also store the number of transactions for each 5 minute period.
 ```python
-ts = data['price']
-ts.index = data['timestamp']
-ts = ts.resample('5Min').ohlc()
+prices = data['price']
+prices.index = data['timestamp']
+ts = prices.resample('5Min').ohlc()
+ts['n_transctions'] = prices.resample('5Min').count()
 ```
 We obtain the following time series (for the first 10 rows): 
                       
-|timestamp            |  open |  high |  low  | close |  
-|-------------------- |:-----:|-------|-------|-------|
-|2014-12-01 05:30:00  | 300.0 | 300.0 | 300.0 | 300.0 |
-|2014-12-01 05:35:00  |  NaN  |  NaN  | NaN   |  NaN  |
-|2014-12-01 05:40:00  | 300.0 | 300.0 | 300.0 |  300.0|
-|2014-12-01 05:45:00  |  NaN  |  NaN  |  NaN  |  NaN  |
-|2014-12-01 05:50:00  |  NaN  |  NaN  |  NaN  |  NaN  |
-|2014-12-01 05:55:00  |  NaN  |  NaN  |  NaN  |  NaN  |
-|2014-12-01 06:00:00  |  NaN  |  NaN  |  NaN  |  NaN  |
-|2014-12-01 06:05:00  |  NaN  |  NaN  |  NaN  |  NaN  |
-|2014-12-01 06:10:00  |  NaN  |  NaN  |  NaN  |  NaN  |
-|2014-12-01 06:15:00  |  NaN  |  NaN  |  NaN  |  NaN  |
+|timestamp            |  open |  high |  low  | close |  n_transactions |
+|-------------------- |:-----:|-------|-------|-------|-----------------|
+|2014-12-01 05:30:00  | 300.0 | 300.0 | 300.0 | 300.0 |      1          |
+|2014-12-01 05:35:00  |  NaN  |  NaN  | NaN   |  NaN  |      0          |
+|2014-12-01 05:40:00  | 300.0 | 300.0 | 300.0 |  300.0|      1          |              
+|2014-12-01 05:45:00  |  NaN  |  NaN  |  NaN  |  NaN  |      0          |              
+|2014-12-01 05:50:00  |  NaN  |  NaN  |  NaN  |  NaN  |      0          |  
+|2014-12-01 05:55:00  |  NaN  |  NaN  |  NaN  |  NaN  |      0          |
+|2014-12-01 06:00:00  |  NaN  |  NaN  |  NaN  |  NaN  |      0          |
+|2014-12-01 06:05:00  |  NaN  |  NaN  |  NaN  |  NaN  |      0          |
+|2014-12-01 06:10:00  |  NaN  |  NaN  |  NaN  |  NaN  |      0          |
+|2014-12-01 06:15:00  |  NaN  |  NaN  |  NaN  |  NaN  |      0          |
  
 Note that some windows of 5 minutes do not contain any transaction. It might be the case in periods of time when BTC was less liquid than today (back in 2014 for example), or in situations of trading halts (specific Coinbase issues for instance).
 
@@ -59,28 +60,33 @@ ts['return'] = np.log(ts['close']) - np.log(ts['open'])
 ```
 Since the first rows of the dataset do not contain many transactions, we give the log-returns of the last 5 lines using ```ts.tail(5)```:
 
-|timestamp           |  open   |   high  |   low   |  close  |  return | 
-|--------------------|:-------:|---------|---------|---------|---------|
-|2018-03-21 11:30:00 | 9103.50 | 9103.50 | 9103.49 | 9103.50 |0.000000 |
-|2018-03-21 11:35:00 | 9103.49 | 9110.99 | 9103.49 | 9110.99 |0.000824 |
-|2018-03-21 11:40:00 | 9110.98 | 9117.00 | 9110.98 | 9117.00 |0.000661 |
-|2018-03-21 11:45:00 | 9117.00 | 9117.00 | 9092.27 | 9092.28 |-0.002715|
-|2018-03-21 11:50:00 | 9092.27 | 9092.28 | 9072.18 | 9072.20 |-0.002210|
+|timestamp           |  open   |   high  |   low   |  close  |n_transactions |  return | 
+|--------------------|:-------:|---------|---------|---------|---------------|---------|
+|2018-03-21 11:30:00 | 9103.50 | 9103.50 | 9103.49 | 9103.50 |       75      |0.000000 |
+|2018-03-21 11:35:00 | 9103.49 | 9110.99 | 9103.49 | 9110.99 |       126     |0.000824 |
+|2018-03-21 11:40:00 | 9110.98 | 9117.00 | 9110.98 | 9117.00 |       148     |0.000661 |
+|2018-03-21 11:45:00 | 9117.00 | 9117.00 | 9092.27 | 9092.28 |       214     |-0.002715|
+|2018-03-21 11:50:00 | 9092.27 | 9092.28 | 9072.18 | 9072.20 |       182     |-0.002210|
 
 ### What happened April, 15 2017 ?
 
-Looking at the returns, one can clearly spot some anomalies. In particular, April 15 2017 at 11 pm, BTC moved from USD 0.06 to USD 1181.95 as Coinbase reopened after scheduled maintenance. This corresponds to a return of 989% and clearly indicates that some returns in this dataset are not representative of the evolution of BTC but have more to do with computer failures. For statistical analysis of BTC/USD returns distribution, these rows should be removed from the dataset. That's what we do next line: 
+Looking at the returns, one can clearly spot some anomalies. In particular, April 15 2017 at 11 pm, BTC moved from USD 0.06 to USD 1181.95 as Coinbase reopened after a planned maintenance. This corresponds to a return of 989% and clearly indicates that some returns in this dataset are not representative of the evolution of BTC but have more to do with computer failures. For statistical analysis of BTC/USD returns distribution, these rows should be removed from the dataset. That's what we do next line: 
 
 ```python
 ts.drop(pd.to_datetime('2017-04-15 23:00:00'), inplace=True)
 ```
 
-More generally, whe should only focus on the last years since at inception BTC was far from being liquid. Completely arbotrarily, we consider only the data **since January 1, 2016**. This new dataset contains about 34 million transactions.
+More generally, whe should only focus on the last years since at inception BTC was far from being liquid. Completely arbitrarily, we consider only the data **since January 1, 2016**. This new dataset contains about 34 million transactions.
 
 ```python
 start = pd.to_datetime('2016-01-01 00:00:00')
 ts = ts.loc[start:]
 ```
+We can compute the average number of transactions per second since January 1, 2016 with these lines of code:
+```python
+trans_per_sec = ts['n_transactions'].mean() / (5 * 60)
+```
+which gives 0.48 transaction per second. BTC/USD is not liquid at all...but it's not suprising.
 
 ## Heteroskedasticity
 
