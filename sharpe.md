@@ -62,13 +62,16 @@ $$\mathrm{Var}(\mid r_{asset}\mid) = \delta t^2(\mu  - \sigma^2/2)^2 + \sigma^2\
 The next step is to assess the sensitivity of the mean and the variance of the portfolio with respect to $$p$$. 
 
 ## Some orders of magnitude
-Let's introduce the variable $$\eps$$ defined as $$p = 1/2 + \eps$$. $$\eps$$ quantifies the excess of accuracy from a coin-flipping strategy. We then have:
+Let's introduce the variable $$\epsilon$$ defined as $$p = 1/2 + \epsilon$$. $$\epsilon$$ quantifies the excess of accuracy from a coin-flipping strategy. We then have:
 {% raw %} 
-$$\mathbb{E}\left(\sum \limits_{t} q_t \mid r_{asset} \mid \right) =2T\eps\mathbb{E}(\mid r_{asset}\mid)$$
+$$\mathbb{E}\left(\sum \limits_{t} q_t \mid r_{asset} \mid \right) =2T\epsilon\mathbb{E}(\mid r_{asset}\mid)$$
 {% endraw %}
 and 
 {% raw %} 
-$$\mathrm{Var}\left(\sum \limits_{t} q_t \mid r_{asset} \mid \right) = T\left((1 ) 4\eps^2)\mathbb{E}(\mid r_{asset}\mid)^2 + 4\eps^2 \mathrm{Var}(\mid r_{asset}\mid) + (1-4\eps^2)\mathrm{Var}(\mid r_{asset}\mid) \right) = T\left( \delta t^2(\mu - \sigma^2/2)^2 + \sigma^2\delta t- 4\eps^2\mathbb{E}(\mid r_{asset}\mid)^2 \right)$$
+$$\mathrm{Var}\left(\sum \limits_{t} q_t \mid r_{asset} \mid \right) = T\left((1 ) 4\epsilon^2)\mathbb{E}(\mid r_{asset}\mid)^2 + 4\epsilon^2 \mathrm{Var}(\mid r_{asset}\mid) + (1-4\epsilon^2)\mathrm{Var}(\mid r_{asset}\mid) \right)$$
 {% endraw %}
-
+so that 
+{% raw %} 
+$$\mathrm{Var}\left(\sum \limits_{t} q_t \mid r_{asset} \mid \right)T\left( \delta t^2(\mu - \sigma^2/2)^2 + \sigma^2\delta t- 4\eps^2\mathbb{E}(\mid r_{asset}\mid)^2 \right)$$
+{% endraw %}
 
