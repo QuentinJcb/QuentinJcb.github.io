@@ -54,7 +54,7 @@ We have seen before that $$r_t$$ is normally distributed. $$\mid r_{asset}\mid $
 $$\mathbb{E}(\mid r_{asset}\mid) = \sigma \sqrt{\delta t} \sqrt{\frac{2}{\pi}}\exp\left(- \frac{\delta t(\mu  - \sigma^2/2)^2}{2\sigma^2 }\right) + (\mu  - \sigma^2/2)\delta t\left(1 - 2\Phi\left(- \sqrt{\delta t}\frac{\mu  - \sigma^2/2}{\sigma}\right)\right)$$
 {% endraw %}
 
-The formula giving the variance of $$\mid r_{asset}\mid $$ is much easier:
+The variance of $$\mid r_{asset}\mid $$ is given by:
 {% raw %} 
 $$\mathrm{Var}(\mid r_{asset}\mid) = \delta t^2(\mu  - \sigma^2/2)^2 + \sigma^2\delta t - \mathbb{E}(\mid r_{asset}\mid )^2$$
 {% endraw %}
