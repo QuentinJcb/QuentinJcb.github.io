@@ -1,6 +1,6 @@
 <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 
-# What shoudl I expect from a trading strategy based on a weak classifier?
+# Return sign predictions slightly better than coin-flipping: what return can I expect ?
 
 ## Context
 
