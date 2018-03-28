@@ -43,7 +43,7 @@ For the variance, we have:
 {% raw %} 
 $$\mathrm{Var}\left(\sum \limits_{t} q_t \mid r_{asset} \mid \right) = \sum \limits_{t} \mathrm{Var}\left(q_t \mid r_{asset}\mid \right)$$
 {% endraw %}
-Using the property $$\mathrm{Var}(XY) = \mathrm{Var}(X)\mathbb{X} + \mathrm{Var}(Y)\mathbb{X} + \mathrm{Var}(X)\mathrm{Var}(Y)$$, it follows that:
+Using the property $$\mathrm{Var}(XY) = \mathrm{Var}(X)\mathbb{E}(Y) + \mathrm{Var}(Y)\mathbb{E}(X) + \mathrm{Var}(X)\mathrm{Var}(Y)$$, it follows that:
 {% raw %} 
 $$\mathrm{Var}\left(\sum \limits_{t} q_t \mid r_{asset} \mid \right) = T\left(4p(1-p)\mathbb{E}(\mid r_{asset}\mid) + (2p-1) \mathrm{Var}(\mid r_{asset}\mid) + 4p(1-p)\mathrm{Var}(\mid r_{asset}\mid)  \right)$$
 {% endraw %}
