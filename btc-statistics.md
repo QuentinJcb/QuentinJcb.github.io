@@ -181,9 +181,11 @@ ret = ts['return']
 ret = (ret - ret.mean())/ret.std()
 ret.fillna(0, inplace=True)
 ```
-Finally, we simulate normal random variables:
+Finally, we simulate normal and student random variables:
 ```python
 norm = np.random.normal(size=len(ret))
+from scipy.stats import t
+stud = t.rvs(df=4, loc=0, scale=1, size=len(ret))
 ```
 We the define a function to compute the cummulative distribution given a sample. 
 ```python
@@ -192,14 +194,15 @@ def compute_cdf(sample, thresh=1e-2):
     x = np.sort(sample)
     cdf = np.array(range(N))/float(N)
     cdf = 1 - cdf
-    x = x[x > thresh]
+    x = x[(x > thresh) & (x < 10)]
     cdf = cdf[-len(x):]
     return x, cdf
 ```
-We apply this function to the returns and to the sample ```norm``` created before. We then plot the associated tails of the cdf in a log-log chart.
+We apply this function to the returns and to the samples ```norm``` and ```stud``` created before. We then plot the associated tails of the cdf in a log-log chart.
 ```python
 x1, cdf1 = compute_cdf(ret)
 x2, cdf2 = compute_cdf(norm)
+x3, cdf3 = compute_cdf(stud)
 
 plt.rc('font', size=14)
 plt.rc('xtick', labelsize=12)
@@ -208,6 +211,7 @@ plt.xlabel(r'$\eta(\%)$')
 plt.ylabel(r'$\mathcal{P}_>(\eta)$')
 plt.loglog(x1, cdf1, basex=10, label='Data')
 plt.loglog(x2, cdf2, basex=10, label='Gaussian')
+plt.loglog(x3, cdf3, basex=10, label='Student')
 plt.legend(loc=3, prop={'size': 18})
 plt.grid(True)
 ```
