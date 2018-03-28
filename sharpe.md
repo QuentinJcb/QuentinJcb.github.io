@@ -12,7 +12,7 @@ First, we will assume that the price of the asset follows a geometric Brownian m
 $$\frac{\mathrm{d}S_t}{S_t} = \mu \mathrm{d}t + \sigma \mathrm{d}B_t $$ 
 {% endraw %}
 
-By integratio between $t$ and $t + \delta t$, we can show using Ito's formula the following property:
+By integration between $t$ and $t + \delta t$, we can show using Ito's formula the following property:
 {% raw %} 
-$$\log(\frac{\S_{t + \delta t}}{S_t}) \sim \mathcal{N}(\mu  - \sigma^2/2)\delta t; + \sigma^2 \delta t) $$ 
+$$\frac{\delta S_t}{S_t} \approx \log(\frac{S_{t + \delta t}}{S_t}) \sim \mathcal{N}(\mu  - \sigma^2/2)\delta t;  \sigma^2 \delta t) $$ 
 {% endraw %}
