@@ -5,7 +5,7 @@
 
 [A quick introduction to Kraken API with Python wrapper](kraken.md)
 
-[What should I expect from a trading strategy based on a weak classifier?](sharpe.md)
+[Return sign predictions slightly better than coin-flipping: what return can I expect](sharpe.md)
 
 [A tour about stochastic approximation](stochastic-approx.html)
 
