@@ -3,7 +3,7 @@
 ## Introduction
 This article is the first part of a long project overlapping **finance** and **machine learning**. Several papers explore the possibility to forecast the evolution of stock's market price movement using different machine learning algorithms, from SVM to neural networks [^fn1] [^fn2] [^fn3]. All these papers have in common the use of technical indicators to capture signal in the noise. Actually, such a quest goes against Eugene Fama's **Efficient Markets Hypothesis** [^fn4]. If there were any algorithm able to predict the evolution of stock's market price better than random, the price would immediately integrate this information. In fact, such a possibility only goes against the strong Efficient Market Hypothesis. There are empirical evidence of pockets of inefficiency in the market, mainly because of irrational behaviours from some investors, that a machine learning algorithm could exploit. Assuming the predictive power of technical analysis is yet another hypothesis. A lot of papers have been published on that topic, with contradictory results. After all, the purpose of this project is more about Python programming and data handling than making money!
 
-The data we are going to use contain information on 9 million BTC/EUR transactions made on Kraken. They were collected [here](http://api.bitcoincharts.com/v1/csv/). The csv file contains 3 columns: the POSIX timestamp, the price (in EUR) and the volume (in BTC). The first 10 lines of the csv file look like that: 
+The data we are going to use contain information on 18 million BTC/EUR transactions made on Kraken. They were collected [here](http://api.bitcoincharts.com/v1/csv/). The csv file contains 3 columns: the POSIX timestamp, the price (in EUR) and the volume (in BTC). The first 10 lines of the csv file look like that: 
   
    | timestamp |     price   | volume|
    |-----------|:-----------:|-------|
@@ -44,15 +44,18 @@ plt.plot(df_btc['timestamp'], df_btc['price'])
 
 Actually, the data cover the period between August 2014 and July 2017.
 
-Now, let's regroup the data in periods of 15 minutes:
+Now, let's regroup the data in periods of 15 minutes and compute the open, high, low and close prices per period:
 ```python
-time_start = df_btc['timestamp'].iloc[0]
+df_btc['timestamp'] = pd.to_datetime(df_btc['timestamp'], unit='s')
 
-def get_period(t, ts=time_start):
-	""" Returns the quarter number of the timestamp t, starting from ts """
-    return int((t - ts) / (15 * 60))
+prices = df_btc['price']
+prices.index = df_btc['timestamp']
 
-df_btc['period'] = df_btc['timestamp'].apply(get_period)
+volumes = df_btc['volume']
+volumes.index = df_btc['timestamp']
+
+df_ohlc = prices.resample('15Min').ohlc()
+df_ohlc['volume'] = volumes.resample('15Min').sum()
 
 ```
 We have added a new column to the dataframe, representing the quarter number of the transaction. Now, we are going to create a new dataframe containing, for each period of 15 minutes, the open, close, high and low prices as well as the volume of transactions. It's completely straightforward using `pd.groupby()`.
