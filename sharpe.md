@@ -1,6 +1,6 @@
 <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 
-# Return sign predictions slightly better than coin-flipping: what return can I expect ?
+# Return sign predictions slightly better than coin-flipping: what Sharpe ratio can I expect?
 
 ## Context
 
@@ -30,7 +30,7 @@ The log-return between $$t=0$$ and $$T$$ will be:
 $$\log(\frac{S_{T}}{S_0}) = \sum \limits_{t} q_t \mid r_{asset}\mid $$
 {% endraw %}
 
-Finally, we assumet that $$q_t$$ and $$r_t$$ are independent. 
+Finally, we assume that $$q_t$$ and $$r_t$$ are independent. This is a strong assumption: some strategies are known to be skewed, meaning that small trading losses are common, but occasional big gains happen. See [https://arxiv.org/pdf/physics/0508104.pdf][this article by Bouchaud & Potters (2005)]
 
 ## Expected value and variance
 The expression $$\log(\frac{S_{T}}{S_0})$$ has the nice property of being expressed as a sum of iid random variables. It will make the calculation of its expected value and variance easier.
