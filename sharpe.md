@@ -30,7 +30,7 @@ The log-return between $$t=0$$ and $$T$$ will be:
 $$\log(\frac{S_{T}}{S_0}) = \sum \limits_{t} q_t \mid r_{asset}\mid $$
 {% endraw %}
 
-Finally, we assume that $$q_t$$ and $$r_t$$ are independent. This is a strong assumption: some strategies are known to be skewed, meaning that small trading losses are common, but occasional big gains happen. See [https://arxiv.org/pdf/physics/0508104.pdf][this article by Bouchaud & Potters (2005)]
+Finally, we assume that $$q_t$$ and $$r_t$$ are independent. This is a strong assumption: some strategies are known to be skewed, meaning that small trading losses are common, but occasional big gains happen. See [^fn1][https://arxiv.org/pdf/physics/0508104.pdf][this article by Bouchaud & Potters (2005)]
 
 ## Expected value and variance
 The expression $$\log(\frac{S_{T}}{S_0})$$ has the nice property of being expressed as a sum of iid random variables. It will make the calculation of its expected value and variance easier.
@@ -93,4 +93,6 @@ $$ SR_{portfolio} \approx 1.6\epsilon T^{1/2}$$
 
 For daily predictions, over one year, we find $$SR_{portfolio} \approx 25\epsilon $$: an increase of 1% in our accuracy will lead to a SR increase of 25 pp!
 
+## References
+[^fn1]: [Jean-Philippe Bouchaud, Marc Potters. Trend followers lose more often than they gain. 2005.](https://arxiv.org/pdf/physics/0508104.pdf)
 
