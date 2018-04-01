@@ -1,4 +1,4 @@
-# Bitcoin’s Price Movement Prediction With LSTM Neural Networks
+# Bitcoin’s Price Movement Prediction With LSTM Neural Networks: Part 1
 
 ## Introduction
 This article is the first part of a long project overlapping **finance** and **machine learning**. Several papers explore the possibility to forecast the evolution of stock's market price movement using different machine learning algorithms, from SVM to neural networks [^fn1] [^fn2] [^fn3]. All these papers have in common the use of technical indicators to capture signal in the noise. Actually, such a quest goes against Eugene Fama's **Efficient Markets Hypothesis** [^fn4]. If there were any algorithm able to predict the evolution of stock's market price better than random, the price would immediately integrate this information. In fact, such a possibility only goes against the strong Efficient Market Hypothesis. There are empirical evidence of pockets of inefficiency in the market, mainly because of irrational behaviours from some investors, that a machine learning algorithm could exploit. Assuming the predictive power of technical analysis is yet another hypothesis. A lot of papers have been published on that topic, with contradictory results. After all, the purpose of this project is more about Python programming and data handling than making money!
@@ -58,25 +58,13 @@ df_ohlc = prices.resample('15Min').ohlc()
 df_ohlc['volume'] = volumes.resample('15Min').sum()
 
 ```
-We have added a new column to the dataframe, representing the quarter number of the transaction. Now, we are going to create a new dataframe containing, for each period of 15 minutes, the open, close, high and low prices as well as the volume of transactions. It's completely straightforward using `pd.groupby()`.
-```python
-df_candles = pd.DataFrame(columns=['period', 'open', 'close', 'high', 'low', 'volume'])
-
-df_candles['period'] = df_btc['period'].drop_duplicates().values
-df_candles['open'] = df_btc.groupby(by='period')['price'].first().values
-df_candles['close'] = df_btc.groupby(by='period')['price'].last().values
-df_candles['high'] = df_btc.groupby(by='period')['price'].max().values
-df_candles['low'] = df_btc.groupby(by='period')['price'].min().values
-df_candles['volume'] = df_btc.groupby(by='period')['volume'].sum().values
-
-```
  **Wait! Can we look closer a the data?**
  Until now we haven't said anything about the time between two succesive transactions in the csv file. With one single line of code, we can compute all the time steps between two transactions: 
  ```python
 delta_t = df_btc['timestamp'] - df['timestamp'].shift()
 delta_t.dropna(inplace=True)
 ```
-In fact, focusing only on the data from Kraken is very limitating, since data from other brokers are available. One possibility would be to merge all of these data. At least, we could compare the frequencies of the data available and the time span. Nonetheless, it will rapidly require more than 4 GB of ram...Let's try to use Dask then!
+In fact, focusing only on the data from Kraken is very limitating, since data from other exchanges are available. One possibility would be to merge all of these data. At least, we could compare the frequencies of the data available and the time span. Nonetheless, it will rapidly require more than 4 GB of ram...Let's try to use Dask then.
 
 ## Muche more data available thanks to Dask!
 Dask is a library that provides multi-core and distributed parallel execution on larger-than-memory datasets. In particular, Dask provides an easy solution to distribute dataframe-like structures on multiple computers. In our case, we will distribute the date on two different configurations: 
