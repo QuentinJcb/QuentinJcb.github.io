@@ -163,7 +163,7 @@ plt.xticks([v for v in vec_lag if (v % 20 == 0) ],
             [ int(v/20) for v in vec_lag if (v % 20 == 0)])
 plt.show()
 ```
-## Cummulative distribution of returns
+## Cumulative distribution of returns
 In this section, we examine the tail of the distribution of returns and compare it with the Gaussian and Student cases. We will see that the decay of the empirical distribution is much slower than what expected with a Gaussian random variable. We compute the returns on periods of one hour. Indeed, the ACF detailed previously is not incompatible with the scenario where returns are independent, except for a lag shorter than one hour. We neglect the autocorrelations that appeared after this lag which are less significant. Under this scenario, by addition of random variables, the distribution on longer time scales should be the convolution of distributions on shorter time scales.
 
 First, we regroup the data as we did before, but with periods of one hour:
@@ -187,7 +187,7 @@ norm = np.random.normal(size=len(ret))
 from scipy.stats import t
 stud = t.rvs(df=4, loc=0, scale=1, size=len(ret))
 ```
-We the define a function to compute the cummulative distribution given a sample. 
+We the define a function to compute the cumulative distribution given a sample. 
 ```python
 def compute_cdf(sample, thresh=1e-2):
     N = len(sample)
