@@ -4,7 +4,7 @@
 
 [Bitcoin's Price Movement Prediction With LSTM Neural Networks: Part 1](btc-lstm.md)
 
-[Return sign predictions slightly better than coin-flipping: what return can I expect?](sharpe.md)
+[Return sign predictions slightly better than coin-flipping: what Sharpe ratio can I expect?](sharpe.md)
 
 [A notebook on stochastic approximation](stochastic-approx.html)
 
