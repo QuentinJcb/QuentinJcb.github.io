@@ -25,7 +25,7 @@ where $$q$$ is a random variable taking the value $$+1$$ with probability $$p$$ 
 
 The log-return between $$t=0$$ and $$T$$ will be:
 {% raw %} 
-$$\log(\frac{S_{T}}{S_0}) = \sum \limits_{t} q_t \mid r_{asset}\ mid $$
+$$\log(\frac{S_{T}}{S_0}) = \sum \limits_{t} q_t \mid r_{asset}\mid $$
 {% endraw %}
 
 Finally, we assumet that $$q_t$$ and $$r_t$$ are independent. 
