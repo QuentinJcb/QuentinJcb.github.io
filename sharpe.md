@@ -4,7 +4,7 @@
 
 ## Context
 
-Let's assume that for each small period of time (it could be 5 minutes, or 1 day), we have access to a prediction given by a weak classifier for the sign of the return of an asset on the next period. Therefore at time $$t$$, we forecast the sign of the return between $$t$$ and $$t + \delta t$$ and invest a value $$V$$. Typically, the accuracy of the prediction would be in the range [0.5, 0.6]. What can we expect in terms of commulative return, volatility and Sharpe ratio?
+Let's assume that for each small period of time (it could be 5 minutes, or 1 day), we have access to a prediction given by a weak classifier for the sign of the return of an asset on the next period. Therefore at time $$t$$, we forecast the sign of the return between $$t$$ and $$t + \delta t$$ and invest a value $$V$$. Typically, the accuracy of the prediction, that is the percentage of winning trades, would be in the range [0.5, 0.6]. What can we expect in terms of commulative return, volatility and Sharpe ratio for this strategy?
 
 We assume a risk-free rate of zero.
 
@@ -14,7 +14,7 @@ First, we will assume that the price of the asset follows a geometric Brownian m
 $$\frac{\mathrm{d}S_t}{S_t} = \mu \mathrm{d}t + \sigma \mathrm{d}B_t $$ 
 {% endraw %}
 
-By integration between $t$ and $t + \delta t$, we can show using Ito's formula the following property:
+By integration between $$t$$ and $$t + \delta t$$, we can show using Ito's formula the following property:
 {% raw %} 
 $$\frac{\delta S_t}{S_t} \approx \log(\frac{S_{t + \delta t}}{S_t}) \sim \mathcal{N}(\mu  - \sigma^2/2)\delta t;  \sigma^2 \delta t) $$ 
 {% endraw %}
@@ -30,7 +30,8 @@ The log-return between $$t=0$$ and $$T$$ will be:
 $$\log(\frac{S_{T}}{S_0}) = \sum \limits_{t} q_t \mid r_{asset}\mid $$
 {% endraw %}
 
-Finally, we assume that $$q_t$$ and $$r_t$$ are independent. This is a strong assumption: some strategies are known to be skewed, meaning that small trading losses are common, but occasional big gains happen. See [^fn1].
+Finally, we assume that $$q_t$$ and $$r_t$$ are independent. This is a strong assumption: some strategies are known to be skewed, meaning that small trading losses are common, but occasional big gains happen. In particular, see Jean-Philippe Bouchaud, Marc Potters. Trend followers lose more often than they gain. 2005[^fn1]
+
 ## Expected value and variance
 The expression $$\log(\frac{S_{T}}{S_0})$$ has the nice property of being expressed as a sum of iid random variables. It will make the calculation of its expected value and variance easier.
 {% raw %} 
@@ -90,7 +91,7 @@ Finally, the Sharpe ratio of this strategy is
 $$ SR_{portfolio} \approx 1.6\epsilon T^{1/2}$$
 {% endraw %}
 
-For daily predictions, over one year, we find $$SR_{portfolio} \approx 25\epsilon $$: an increase of 1% in our accuracy will lead to a SR increase of 25 pp!
+For daily predictions, over one year, we find $$SR_{portfolio} \approx 25\epsilon $$: an increase of 1% in our accuracy will lead to a SR increase of 25 pp! A percentage of winning trades of 54% will lead to a Sharpe ratio of 1.
 
 ## References
 [^fn1]: [Jean-Philippe Bouchaud, Marc Potters. Trend followers lose more often than they gain. 2005.](https://arxiv.org/pdf/physics/0508104.pdf)
