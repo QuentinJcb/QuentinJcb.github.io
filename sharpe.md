@@ -16,7 +16,7 @@ $$\frac{\mathrm{d}S_t}{S_t} = \mu \mathrm{d}t + \sigma \mathrm{d}B_t $$
 
 By integration between $$t$$ and $$t + \delta t$$, we can show using Ito's formula the following property:
 {% raw %} 
-$$\frac{\delta S_t}{S_t} \approx \log(\frac{S_{t + \delta t}}{S_t}) \sim \mathcal{N}(\mu  - \sigma^2/2)\delta t;  \sigma^2 \delta t) $$ 
+$$\frac{\delta S_t}{S_t} \approx \log(\frac{S_{t + \delta t}}{S_t}) \sim \mathcal{N}((\mu  - \sigma^2/2)\delta t;  \sigma^2 \delta t) $$ 
 {% endraw %}
 
 To model the prediction, we assume that at each time step, we predict the correct sign of the return with probability $$p$$. So, with probability $$p$$, the return on our portfolio will be the absolute value of the asset return, and with probability $$1 - p$$, it will be the opposite of the absolute value of the asset return. We can therefore write:
@@ -27,7 +27,7 @@ where $$q$$ is a random variable taking the value $$+1$$ with probability $$p$$ 
 
 The log-return between $$t=0$$ and $$T$$ will be:
 {% raw %} 
-$$\log(\frac{S_{T}}{S_0}) = \sum \limits_{t} q_t \mid r_{asset}\mid $$
+$$\log\left(\frac{S_{T}}{S_0}\right) = \sum \limits_{t} q_t \mid r_{asset}\mid $$
 {% endraw %}
 
 Finally, we assume that $$q_t$$ and $$r_t$$ are independent. This is a strong assumption: some strategies are known to be skewed, meaning that small trading losses are common, but occasional big gains happen. In particular, see Jean-Philippe Bouchaud, Marc Potters. Trend followers lose more often than they gain. 2005[^fn1]
