@@ -93,6 +93,51 @@ $$ SR_{portfolio} \approx 1.6\epsilon T^{1/2}$$
 
 For daily predictions, over one year, we find $$SR_{portfolio} \approx 25\epsilon $$: an increase of 1% in our accuracy will lead to a SR increase of 25 pp! A percentage of winning trades of 54% will lead to a Sharpe ratio of 1.
 
+## Python simulation
+The code below allows to check these results by simulating the dynamics of an asset and the resulting strategy for various values of $$\epsilon$$:
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+mu = 15/100
+sigma = 10/100
+delta_t = 1/252
+N = 10000 # Number of simulations
+T = 252
+
+list_sharpe = []
+
+for eps in np.linspace(0, 15/100, 100):
+    
+    # Asset returns 
+    ret = np.random.normal(loc=(mu - 0.5*sigma**2)*delta_t,
+                              scale=sigma*np.sqrt(delta_t),
+                              size=(N, T))
+    abs_ret = np.abs(ret) 
+    bern = np.random.binomial(1, 0.5 + eps, (N, T))
+    
+    # +1 with probability 1/2 + eps, -1 otherwise
+    q = 2*bern - 1
+    
+    # Returns of the strategy
+    daily_ret = abs_ret * q # Element-wise product
+    annual_ret = np.sum(daily_ret, axis=1)
+    annual_vol = np.std(daily_ret, axis=1)*np.sqrt(252)
+    
+    sharpe = annual_ret / annual_vol
+    list_sharpe.append(np.mean(sharpe))
+    
+
+plt.plot(np.linspace(0, 15/100, 100), list_sharpe)
+plt.xlabel(r'$\epsilon$ (excess of precision)')
+plt.ylabel('Expected Sharpe ratio')
+
+```
+
+As we result, we get the following graph which confirms the linear relation between the Sharpe ratio and $$\epsilon$$: 
+
+![Relation between the Sharpe ratio and the excess of precision](graph_sharpe.png)
+
 ## References
 [^fn1]: [Jean-Philippe Bouchaud, Marc Potters. Trend followers lose more often than they gain. 2005.](https://arxiv.org/pdf/physics/0508104.pdf)
 
