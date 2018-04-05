@@ -134,7 +134,7 @@ plt.ylabel('Expected Sharpe ratio')
 
 ```
 
-As we result, we get the following graph which confirms the linear relation between the Sharpe ratio and $$\epsilon$$: 
+As a result, we get the following graph which confirms the linear relation between the Sharpe ratio and $$\epsilon$$: 
 
 ![Relation between the Sharpe ratio and the excess of precision](graph_sharpe.png)
 
