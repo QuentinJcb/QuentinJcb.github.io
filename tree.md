@@ -1,3 +1,5 @@
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script> 
+
 # Taxonomy of the Dow Jones Industrial Average using Minimum Spanning Tree
 
 In this short post, we analyse the correlations between the 30 constituents of the DJIA. The daily prices of all US stocks and ETF are available
