@@ -59,7 +59,7 @@ def distance(rho):
 
 dist_matrix = distance(corr).values
 ```
-The prefactor in front of the distance is used to make future plots cleare.
+The prefactor in front of the distance is used to make future plots clearer.
 
 ## Minimum Spanning Tree
 
