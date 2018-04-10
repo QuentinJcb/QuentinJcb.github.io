@@ -41,10 +41,14 @@ for file in filenames:
     df.columns = [file.split('.')[0].upper()]
     list_df.append(df)
     
-data  = pd.concat(list_df, axis=1) # The 30 dataframes are merged ln their index (date
+data  = pd.concat(list_df, axis=1) # The 30 dataframes are merged on their index (date)
 data.dropna(axis=0, how='any', inplace=True) # We select only the period when all stocks are listed
 ```
-This dataframe has 30 columns (one for each stock) and 2430 rows (about 10 years of daily returns). We can now compute the correlation matrix:
+This dataframe has 30 columns (one for each stock) and 2430 rows (about 10 years of daily returns). 
+
+## Correlations
+
+We can now compute the correlation matrix:
 ```python
 corr = data.corr()
 ```
