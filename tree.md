@@ -59,3 +59,39 @@ def distance(rho):
 
 dist_matrix = distance(corr).values
 ```
+
+## Minimum Spanning Tree
+
+The matrix ```dist_matrix``` can be thought as the adjacency matrix of a particular undirected graph, where $$d_{ij}$$ is the distance associated with the edge connecting nodes $$i$$ and $$j$$. For instance, the stock nearest Apple (AAPL) is Intel (INTC). On this graph, we can define some trees, that is connex graphs without any cycle. In particular, we can consider the trees containing all the 30 stocks and define their length as the sum of the distances between each node. A minimum spanning tree is a tree of minimum length containing all the stocks. The image below shows a graph and the associated minimum spanning tree.
+
+**Insert image tree**
+
+There are three common algorithms to find this tree:
+* Otakar Borůvka's algorithm
+* Prim's algorithm
+* Kruskal's algorithm
+The complexity is $$\mathcal{O}(m\logn)$$ where $$m$$ is the number of edges and $n$ the number of vertices , except for Prim's algorithm where it can be $$\mathcal{O}(m + n\logn)$$ depending on the graph.
+
+In python, the libraries ```networkx``` and ```scipy```provide some tools to deal with graphs. In particular, ```scipy``` allows to compute the minimum spanning tree directly from the adjacency matrix: 
+```python
+from scipy.sparse.csgraph import minimum_spanning_tree
+
+tree = minimum_spanning_tree(dist_matrix)
+tree = tree.toarray().astype(float)
+```
+We can now use ```networkx```to draw the minimum spanning tree found above:
+```python
+import networkx as nx
+import matplotlib.pyplot as plt
+
+labels = list(data.columns) # tickers
+graph = nx.from_numpy_matrix(tree)
+mapping = dict(zip(graph, labels))
+graph = nx.relabel_nodes(graph, mapping) # nodes are characters a through z
+
+plt.figure(figsize=(10,10))
+plt.axis('off')
+nx.draw_networkx(graph, c='r', alpha=0.7)
+```
+
+** Insert tree **
