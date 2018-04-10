@@ -72,7 +72,7 @@ There are three common algorithms to find this tree:
 * Prim's algorithm
 * Kruskal's algorithm
 
-The complexity is $$\mathcal{O}(m\log{}n)$$ where $$m$$ is the number of edges and $n$ the number of vertices , except for Prim's algorithm where it can be $$\mathcal{O}(m + n\log{}n)$$ depending on the graph.
+The complexity is $$\mathcal{O}(m\log{}n)$$ where $$m$$ is the number of edges and $$n$$ the number of vertices , except for Prim's algorithm where it can be $$\mathcal{O}(m + n\log{}n)$$ depending on the graph.
 
 In python, the libraries ```networkx``` and ```scipy```provide some tools to deal with graphs. In particular, ```scipy``` allows to compute the minimum spanning tree directly from the adjacency matrix: 
 ```python
