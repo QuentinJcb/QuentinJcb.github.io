@@ -8,5 +8,7 @@
 
 [Return sign predictions slightly better than coin-flipping: what Sharpe ratio can I expect?](sharpe.md)
 
+[Master equations: from physics to finance](master_equations.md)
+
 [A notebook on stochastic approximation](stochastic-approx.html)
 
