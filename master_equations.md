@@ -19,6 +19,6 @@ By substracting $$P(x, t)$$, we have
 For small $$\Delta x$$ and $$\Delta t$$, the first term can be approximated by $$\frac{\partial P(x, t)}{\partial t} \Delta t $$ and the second one by $$\frac{\partial^2P(x, t)}{\partial x^2}\Delta x^2 $$ leading to the **following Heat equation**:
 
 
-{% raw %} $$\frac{\partial P(x, t)}{\partial t}= \frac{\Delta x^2}{\Delta t} \frac{\partial^2P(x, t)}{\partial x^2}$$ {% endraw %}
+{% raw %} $$\frac{\partial P(x, t)}{\partial t}= \frac{\Delta x^2}{2\Delta t} \frac{\partial^2P(x, t)}{\partial x^2}$$ {% endraw %}
 
 
