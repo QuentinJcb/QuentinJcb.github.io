@@ -1,6 +1,6 @@
 <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script> 
 
-# Taxonomy of the Dow Jones Industrial Average using Minimum Spanning Tree
+# Taxonomy of the Dow Jones Industrial Average [1/2]: the Minimum Spanning Tree case
 
 In this short post, we analyse the correlations between the 30 constituents of the DJIA. The daily prices of all US stocks and ETF are available
 on [Kaggle](https://www.kaggle.com/borismarjanovic/price-volume-data-for-all-us-stocks-etfs). This dataset is made of one file for each security containing the date, the open, high, low and close prices, the volume and the open interest. The approach followed is the following:
