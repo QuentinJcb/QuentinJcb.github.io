@@ -63,7 +63,7 @@ The prefactor in front of the distance is used to make future plots clearer.
 
 ## Minimum Spanning Tree
 
-The matrix ```dist_matrix``` can be thought as the adjacency matrix of a particular undirected graph, where $$d_{ij}$$ is the distance associated with the edge connecting nodes $$i$$ and $$j$$. For instance, the stock nearest Apple (AAPL) is Intel (INTC). On this graph, we can define some trees, that is connex graphs without any cycle. In particular, we can consider the trees containing all the 30 stocks and define their length as the sum of the distances between each node. A minimum spanning tree is a tree of minimum length containing all the stocks. The image below shows a graph and the associated minimum spanning tree.
+The matrix ```dist_matrix``` can be thought as the adjacency matrix of a particular undirected graph, where $$d_{ij}$$ is the distance associated with the edge connecting nodes $$i$$ and $$j$$. For instance, the stock nearest Apple (AAPL) is Intel (INTC). On this graph, we can define some trees which are defined as connex graphs without any cycle. In particular, we can consider the trees containing all the 30 stocks and define their length as the sum of the distances between each node. A minimum spanning tree is a tree of minimum length containing all the stocks. The image below shows a graph and the associated minimum spanning tree.
 
 ![Example of a minimum spanning tree](min_tree.png "Example of a minimum spanning tree")
 
@@ -74,14 +74,14 @@ There are three common algorithms to find this tree:
 
 The complexity is $$\mathcal{O}(m\log{}n)$$ where $$m$$ is the number of edges and $$n$$ the number of vertices , except for Prim's algorithm where it can be $$\mathcal{O}(m + n\log{}n)$$ depending on the graph.
 
-In python, the libraries ```networkx``` and ```scipy```provide some tools to deal with graphs. In particular, ```scipy``` allows to compute the minimum spanning tree directly from the adjacency matrix: 
+In python, the libraries ```networkx``` and ```scipy``` provide some tools to deal with graphs. In particular, ```scipy``` allows to compute the minimum spanning tree directly from the adjacency matrix: 
 ```python
 from scipy.sparse.csgraph import minimum_spanning_tree
 
 tree = minimum_spanning_tree(dist_matrix)
 tree = tree.toarray().astype(float)
 ```
-We can now use ```networkx```to draw the minimum spanning tree found above:
+We can now use ```networkx``` to draw the minimum spanning tree found above:
 ```python
 import networkx as nx
 import matplotlib.pyplot as plt
@@ -97,3 +97,5 @@ nx.draw_networkx(graph, c='r', alpha=0.7)
 ```
 
 ![DJIA minimum spanning tree](tree.png "DJIA minimum spanning tree")
+
+Economic clusters are clearly observable on this tree: at the top-right corner, we can spot tech companies grouped together, while fiancial service companies are visible in the lower-left corner. Therefore, the classification obtained makes sense from an economic point of view.
