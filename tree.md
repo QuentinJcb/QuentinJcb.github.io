@@ -98,4 +98,4 @@ nx.draw_networkx(graph, c='r', alpha=0.7)
 
 ![DJIA minimum spanning tree](tree.png "DJIA minimum spanning tree")
 
-Economic clusters are clearly observable on this tree: at the top-right corner, we can spot tech companies grouped together, while fiancial service companies are visible in the lower-left corner. Therefore, the classification obtained makes sense from an economic point of view.
+Economic clusters are clearly observable on this tree: at the top-right corner, we can spot tech companies grouped together, while financial service companies are visible in the lower-left corner. Therefore, the classification obtained makes sense from an economic point of view.
