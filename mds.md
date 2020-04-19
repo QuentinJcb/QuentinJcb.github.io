@@ -2,7 +2,7 @@
 
 # Taxonomy of the Dow Jones Industrial Average [2/2]: the Multi-Dimensional Scaling case
 
-This article completes the short study described here, in which the correlation matrix of 30 US stocks is computed and analysed
+This article completes the short study described [here](https://quentinjcb.github.io/tree.html), in which the correlation matrix of 30 US stocks is computed and analysed
 in terms of its associated minimum spanning tree. This approach revealed economic sectors, by linking together stocks presenting strong correlations.
 In this article, we propose to extend this study using multi-dimensional scaling instead of a minimum spanning tree. First, let's define what MDS means.
 
@@ -54,5 +54,5 @@ We obtained the follogin result:
 
 ![MDS representation of the stocks](mds.png "MDS representation of the stocks")
 
-Note that each stock is coloured according to its position in the MST defined in the first part. We can see how the clusters of the first part are preserved, stocks belonging to the same sector are correctly maped in regions where they are close from each other. We also observe the same centrality of MMM as in the MST. The significant diversity of 3M activities explains this centrality, the company being exposed to a broad range of economic sectors.
+Note that each stock is coloured according to its position in the MST defined in the [first part](https://quentinjcb.github.io/tree.html). We can see how the clusters of the first part are preserved, stocks belonging to the same sector are correctly maped in regions where they are close from each other. We also observe the same centrality of MMM as in the MST. The significant diversity of 3M activities explains this centrality, the company being exposed to a broad range of economic sectors.
 
