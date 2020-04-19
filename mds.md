@@ -54,5 +54,5 @@ We obtained the follogin result:
 
 ![MDS representation of the stocks](mds.png "MDS representation of the stocks")
 
-Note that each stock is coloured according to its position in the MST defined in the first part. We can see how the clusters of the first part are preserved, stocks belonging to the same sector are correctly maped in regions where they are close from each other. We also observe the same centrality of MMM as in the MST. The significant diversity of 3M activities explains this centrality, the company beeing exposed to a broad range of economic sectors.
+Note that each stock is coloured according to its position in the MST defined in the first part. We can see how the clusters of the first part are preserved, stocks belonging to the same sector are correctly maped in regions where they are close from each other. We also observe the same centrality of MMM as in the MST. The significant diversity of 3M activities explains this centrality, the company being exposed to a broad range of economic sectors.
 
